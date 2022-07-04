@@ -4,13 +4,15 @@ var count = [0 , 0, 0, 0, 0, 0, 0, 0, 0];
 var keyon = 'none';
 sounds.forEach((sound)=> {
     
+    const buttondiv = document.createElement('div');
+    buttondiv.className = 'buttondiv';
     const btn = document.createElement('img');
+    btn.className = 'btn';
     btn.src = './images/' + sound + '.png';
-    btn.classList.add('btn');
-    btn.innerText = sound;
+    buttondiv.appendChild(btn);
 
     //add the button to the div with the id of sound
-    document.getElementById('buttons').appendChild(btn);
+    document.getElementById('buttons').appendChild(buttondiv);
 
     update();
     btn.addEventListener('click', ()=> {
