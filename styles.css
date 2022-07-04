@@ -31,8 +31,21 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin: 1rem;
     border-radius: 5px;
+}
+.description{
+    background-color: #0000007d;
+    color: #fff;
+    border: none;
+    width : 10rem;
+    padding: 1.5rem 2rem;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 1rem;
 }
 
 .btn{
@@ -56,6 +69,7 @@ body{
 }
 .btn:hover{
     background-color: rgba(0, 0, 0, 0.101);
+    opacity: 50%;
 }
 
 footer{
