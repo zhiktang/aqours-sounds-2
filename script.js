@@ -14,6 +14,7 @@ sounds.forEach((sound)=> {
     var description = document.createElement('button');
     description.className = 'description';
     description.innerText = sound;
+    description.id = sound;
     buttondiv.appendChild(description);
     //add the button to the div with the id of sound
     document.getElementById('buttons').appendChild(buttondiv);
@@ -35,20 +36,26 @@ sounds.forEach((sound)=> {
     });    
     btn.addEventListener('mouseenter', ()=> {
         //console.log("enter");
-        keyon = sound;
+        
         update();
 
     });
     btn.addEventListener('mouseleave', ()=> {
         update();
-        keyon = 'none';
+        
     });
 
     description.addEventListener('mouseenter', ()=> {
+        keyon = sound;
         update();
         description.innerText = count[sounds.indexOf(sound)];
+        while(keyon == sound) {
+            setTimeout(()=> { update(); }, 100); 
+            description.innerText = count[sounds.indexOf(sound)];
+        }
     });
     description.addEventListener('mouseleave', ()=> {
+        keyon = 'none';
         update();
         description.innerText = sound;
     });
@@ -75,6 +82,7 @@ function update() {
     //console.log(count);
     //console.log(count.length);
 };
+
 function click(person) {
     //console.log(person);
     const xhttp = new XMLHttpRequest();
