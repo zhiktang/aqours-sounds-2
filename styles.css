@@ -13,13 +13,26 @@ body{
     background-size: cover;
     background-position: center;
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     text-align: center;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttondiv{
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    border-radius: 5px;
 }
 
 .btn{

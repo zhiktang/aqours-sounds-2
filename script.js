@@ -4,9 +4,9 @@ var count = [0 , 0, 0, 0, 0, 0, 0, 0, 0];
 var keyon = 'none';
 sounds.forEach((sound)=> {
     
-    const buttondiv = document.createElement('div');
+    var buttondiv = document.createElement('div');
     buttondiv.className = 'buttondiv';
-    const btn = document.createElement('img');
+    var btn = document.createElement('img');
     btn.className = 'btn';
     btn.src = './images/' + sound + '.png';
     buttondiv.appendChild(btn);
@@ -42,7 +42,6 @@ sounds.forEach((sound)=> {
         btn.innerText = sound;
     });
 
-    document.getElementById('buttons').appendChild(btn);
 });
 function update() {
     const xhttp = new XMLHttpRequest();
