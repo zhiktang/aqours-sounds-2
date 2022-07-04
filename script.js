@@ -3,7 +3,7 @@ const sounds = ['Chika', 'Riko', 'You', 'Dia', 'Kanan', 'Mari', 'Hanamaru', 'Rub
 var count = [0 , 0, 0, 0, 0, 0, 0, 0, 0];
 var keyon = 'none';
 sounds.forEach((sound)=> {
-    update();
+    
     var buttondiv = document.createElement('div');
     buttondiv.className = 'buttondiv';
     var btn = document.createElement('img');
@@ -13,29 +13,37 @@ sounds.forEach((sound)=> {
     buttondiv.appendChild(btn);
     var description = document.createElement('button');
     description.className = 'description';
-    update(description,sound);
+    description.innerText = sound;
     buttondiv.appendChild(description);
     //add the button to the div with the id of sound
     document.getElementById('buttons').appendChild(buttondiv);
 
-    
+    update();
     btn.addEventListener('click', ()=> {
         //console.log(sound);
         console.log('sending click');
-        click(sound,description);
+        click(sound,btn);
         //console.log('requesting update 1');
         //update();
+        //btn.innerText = count[sounds.indexOf(sound)];
         const audio = new Audio(`sounds/${sound}.mp3`);
         audio.load();
         audio.play();
         //console.log('requesting update 2');
         //update();
+        //btn.innerText = count[sounds.indexOf(sound)];
     });    
     btn.addEventListener('mouseenter', ()=> {
         //console.log("enter");
         keyon = sound;
         update();
 
+    });
+    description.addEventListener('mouseenter', ()=> {
+        description.innerText = count[sounds.indexOf(sound)];
+    });
+    description.addEventListener('mouseleave', ()=> {
+        description.innerText = sound;
     });
     btn.addEventListener('mouseleave', ()=> {
         update();
@@ -64,29 +72,7 @@ function update() {
     //console.log(count);
     //console.log(count.length);
 };
-function update(description,person) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', 'https://count.alhub.net', true);
-    xhttp.send();
-    xhttp.onreadystatechange = function() {
-       // console.log(xhttp.readyState);
-       // console.log("status: " + xhttp.status);
-        if (this.readyState == 4 && this.status == 200) {
-           // console.log("enter if");
-            //console.log(this.responseText);
-            const res = this.responseText;
-           // console.log(file);
-            //console.log(res);
-            lines = JSON.parse(res);
-            console.log(lines);
-            count = lines;
-            description.innerText = count[sounds.indexOf(person)];
-        }
-    }
-    //console.log(count);
-    //console.log(count.length);
-};
-function click(person,description) {
+function click(person,btn) {
     //console.log(person);
     const xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'https://count.alhub.net', true);
