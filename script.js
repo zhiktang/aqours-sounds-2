@@ -22,7 +22,7 @@ sounds.forEach((sound)=> {
     btn.addEventListener('click', ()=> {
         //console.log(sound);
         console.log('sending click');
-        click(sound,btn);
+        click(sound);
         //console.log('requesting update 1');
         //update();
         //btn.innerText = count[sounds.indexOf(sound)];
@@ -39,17 +39,20 @@ sounds.forEach((sound)=> {
         update();
 
     });
-    description.addEventListener('mouseenter', ()=> {
-        description.innerText = count[sounds.indexOf(sound)];
-    });
-    description.addEventListener('mouseleave', ()=> {
-        description.innerText = sound;
-    });
     btn.addEventListener('mouseleave', ()=> {
         update();
         keyon = 'none';
     });
 
+    description.addEventListener('mouseenter', ()=> {
+        update();
+        description.innerText = count[sounds.indexOf(sound)];
+    });
+    description.addEventListener('mouseleave', ()=> {
+        update();
+        description.innerText = sound;
+    });
+    
 });
 function update() {
     const xhttp = new XMLHttpRequest();
@@ -72,7 +75,7 @@ function update() {
     //console.log(count);
     //console.log(count.length);
 };
-function click(person,btn) {
+function click(person) {
     //console.log(person);
     const xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'https://count.alhub.net', true);
@@ -85,7 +88,7 @@ function click(person,btn) {
             if(keyon == person) {
                 singular = JSON.parse(this.responseText);
                 console.log('changed button text');
-                description.innerText = singular;
+                count[sounds.indexOf(person)] = singular;
             }
         }
         
