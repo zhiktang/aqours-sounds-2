@@ -49,10 +49,6 @@ sounds.forEach((sound)=> {
         keyon = sound;
         update();
         description.innerText = count[sounds.indexOf(sound)];
-        while(keyon == sound) {
-            setTimeout(()=> { update(); }, 100); 
-            description.innerText = count[sounds.indexOf(sound)];
-        }
     });
     description.addEventListener('mouseleave', ()=> {
         keyon = 'none';
